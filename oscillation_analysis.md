@@ -1,7 +1,7 @@
 ---
 output: html_document
 ---
-# Examples and light analysis of oscillation in QE signal
+# Examples and analysis of oscillation in QE-Plus signal
 The Q-Exactive Plus exhibits a large oscillation (20% peak to trough) in signal intensity on a second timescale.  Here we look at some of the characteristics of that variation. **Notably** this variation is not stochastic, the variation exhbits a distinct period of between 0.5 and 2 seconds (corresponding to 8 to 20 scans).  This signal fluctuation is stable, reproducible and large. 
 
 This suggests that it is a design flaw of the instrument which could be fixed.
@@ -163,9 +163,10 @@ ggplot() +
  - The oscillation is independent of the syringe pump
  - Changes in gas flow rates appear to alter the oscillation period
  - These results suggest there is a design flaw which could be fixed
+ - **Or** these results suggest there is a defect in our instrument which should be fixed.
  - Based on other tests I do not think this is AGC related
 
-# Extra Bits
+# Additional Information and Examples
 ## Statistics
 This mostly averages out as you get more scans across a peak.  But as peaks narrow and scans across a peak are fewer this will increase observed CVs.
 
