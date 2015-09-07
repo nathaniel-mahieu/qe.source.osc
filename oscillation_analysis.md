@@ -1,8 +1,5 @@
----
-output: html_document
----
 # Examples and analysis of oscillation in QE-Plus signal
-The Q-Exactive Plus exhibits a large oscillation (20% peak to trough) in signal intensity on a second timescale.  Here we look at some of the characteristics of that variation. **Notably** this variation is not stochastic, the variation exhbits a distinct period of between 0.5 and 2 seconds (corresponding to 8 to 20 scans).  This signal fluctuation is stable, reproducible and large. 
+The Q-Exactive Plus exhibits a large oscillation (20% peak to trough) in signal intensity on a second timescale.  Here we look at some of the characteristics of that variation. Notably this variation is **not stochastic**, the variation exhbits a distinct period of between 0.5 and 2 seconds (corresponding to 8 to 20 scans).  This signal fluctuation is stable, reproducible and large. 
 
 This suggests that it is a design flaw of the instrument which could be fixed.
 
@@ -184,7 +181,7 @@ tic.dist = tic.l[[5]]
 tic.mean = mean(tic.dist)
 
 samples = lapply(peak.scan.l, function(scs) {
-  sapply(1:1000, function(i) {
+  sapply(1:3000, function(i) {
     gs = gauss[round(seq(1, length(gauss), by = length(gauss)/scs))]
     measurements = sample(tic.dist, length(gs))
     
@@ -198,14 +195,15 @@ samples = lapply(peak.scan.l, function(scs) {
 df = reshape2::melt(samples)
 colnames(df) = c("percent.error", "peak.scans")
 df$peak.scans = factor(df$peak.scans, labels = as.character(peak.scan.l))
+df$percent.error = df$percent.error * 100
 
-ggplot(df, aes(x = percent.error, fill = peak.scans)) + geom_histogram() + facet_grid(peak.scans~.) + theme_nate(12) + ggtitle("Additional error due to random sampling of oscillating signal.")
+ggplot(df, aes(x = percent.error, fill = peak.scans)) + geom_histogram(binwidth = .25) + facet_grid(peak.scans~.) + theme_nate(12) + ggtitle("Additional error due to random sampling of oscillating signal.")
 ```
 
 ![plot of chunk unnamed-chunk-8](figure/unnamed-chunk-8-2.png) 
 
 ## Lower sample rates
-At lower sample rates (such as the 1 scan per second we generally sample at) this problem looks much more stochastic, and is the variation we originally described and were frustrated with.
+At lower sample rates (such as the 1 scan per second we generally sample at) this problem looks much more stochastic, and is the variation which we originally described and interferes with our data analysis.
 
 
 ```r
