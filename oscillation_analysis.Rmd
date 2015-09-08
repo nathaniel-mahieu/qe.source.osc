@@ -1,7 +1,7 @@
 # Examples and analysis of oscillation in QE-Plus signal
 The Q-Exactive Plus exhibits a large oscillation (20% peak to trough) in signal intensity on a second timescale.  Here we look at some of the characteristics of that variation. Notably this variation is **not stochastic**, the variation exhbits a distinct period of between 0.5 and 2 seconds (corresponding to 8 to 20 scans).  This signal fluctuation is stable, reproducible and large. 
 
-This suggests that it is a design flaw of the instrument which could be fixed.
+This suggests that it is a design flaw of the instrument or source which could be fixed.
 
 # Data Collected
 We collected direct infusion data from a syringe pump at various flow rates and instrument settings.  Here is an overview of the data and a zoomed and 3 point moving averaged region.
@@ -17,6 +17,11 @@ The different experimental conditions tested and their start scan are listed her
 seg = read.csv("segments.csv")
 seg
 ```
+
+# Details
+Infusion solution was a mixture of glutamine, glutamate, alphaketoglutarrate, citrate and pyruvate in 1:1 water acetonitrile + 10mM Ammonium Acetate + 10mM Ammonium Hydroxide.  Analytes were 10 ng/mL.  The TIC is analyzed below but the oscillation is visible in all compounds. Data included below was collected with syringe pump only, but oscillation was observed with only LC, and with LC+Syringe pump via a mixing T.  
+
+# Analysis
 
 ## Quick FT to find period
 The most distinct aspect of this signal is its period.  We do a quick FT to approximate the period of the oscillation.
